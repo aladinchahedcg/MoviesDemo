@@ -2,6 +2,7 @@ plugins {
     id("com.android.application")
     id("org.jetbrains.kotlin.android")
     id ("kotlin-kapt")
+
     id ("com.google.dagger.hilt.android")
 }
 
@@ -84,6 +85,37 @@ dependencies {
     kapt ("com.google.dagger:hilt-compiler:2.44")
     kapt("androidx.hilt:hilt-compiler:1.1.0")
     implementation("androidx.hilt:hilt-navigation-compose:1.1.0")
+
+    //Navigation
+    implementation ("androidx.navigation:navigation-compose: 2.7.5")
+
+    // Room
+    val  room_version = "2.6.1"
+
+    implementation ("androidx.room:room-runtime:$room_version")
+    annotationProcessor ("androidx.room:room-compiler:$room_version")
+
+    // To use Kotlin annotation processing tool (kapt)
+    kapt ("androidx.room:room-compiler:$room_version")
+    // To use Kotlin Symbol Processing (KSP)
+    implementation("com.google.devtools.ksp:symbol-processing-api:1.9.21-1.0.15")
+
+
+    // optional - RxJava2 support for Room
+    implementation ("androidx.room:room-rxjava2:$room_version")
+
+    // optional - RxJava3 support for Room
+    implementation ("androidx.room:room-rxjava3:$room_version")
+
+    // optional - Guava support for Room, including Optional and ListenableFuture
+    implementation ("androidx.room:room-guava:$room_version")
+
+    // optional - Test helpers
+    testImplementation ("androidx.room:room-testing:$room_version")
+
+    // optional - Paging 3 Integration
+    implementation ("androidx.room:room-paging:$room_version")
+
 }
 //kapt {
   //  correctErrorTypes true
