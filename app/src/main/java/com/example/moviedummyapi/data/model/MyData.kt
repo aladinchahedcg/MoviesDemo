@@ -1,3 +1,3 @@
 package com.example.moviedummyapi.data.model
 
-class MyData : ArrayList<MyDataItem>()
+class MyData : ArrayList<Movie>()

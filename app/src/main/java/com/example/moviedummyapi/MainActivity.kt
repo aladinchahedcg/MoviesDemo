@@ -1,6 +1,5 @@
 package com.example.moviedummyapi
 
-import android.content.Context
 import android.os.Bundle
 import android.widget.Toast
 import androidx.activity.ComponentActivity
@@ -32,14 +31,12 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.hilt.navigation.compose.hiltViewModel
-import androidx.room.Room
 import coil.compose.AsyncImagePainter
 import coil.compose.rememberAsyncImagePainter
 import coil.request.ImageRequest
 import coil.size.Size
-import com.example.moviedummyapi.data.model.MovieDataBase
-import com.example.moviedummyapi.data.model.MyDataItem
-import com.example.moviedummyapi.data.model.MyDataItemRoom
+import com.example.moviedummyapi.data.model.Movie
+import com.example.moviedummyapi.data.model.MovieEntity
 import com.example.moviedummyapi.presentation.MovieViewModel
 import com.example.moviedummyapi.ui.theme.MovieDummyApiTheme
 import dagger.hilt.android.AndroidEntryPoint
@@ -108,9 +105,9 @@ class MainActivity : ComponentActivity() {
 
 
 @Composable
-fun Movie(movie: MyDataItem) {
+fun Movie(movie: Movie) {
     val imageState = rememberAsyncImagePainter(
-        model = ImageRequest.Builder(LocalContext.current).data(movie.Poster)
+        model = ImageRequest.Builder(LocalContext.current).data(movie.poster)
             .size(Size.ORIGINAL).build()
     ).state
     Column(
@@ -136,7 +133,7 @@ fun Movie(movie: MyDataItem) {
                     .fillMaxWidth()
                     .height(200.dp),
                 painter = imageState.painter,
-                contentDescription = movie.Title,
+                contentDescription = movie.title,
                 contentScale = ContentScale.Crop
             )
         }
@@ -144,7 +141,7 @@ fun Movie(movie: MyDataItem) {
 
         Text(
             modifier = Modifier.padding(horizontal = 16.dp),
-            text = "${movie.Title} ",
+            text = "${movie.title} ",
             fontSize = 17.sp,
             fontWeight = FontWeight.SemiBold
         )
@@ -152,7 +149,7 @@ fun Movie(movie: MyDataItem) {
 
         Text(
             modifier = Modifier.padding(horizontal = 16.dp),
-            text = "Year of Production: ${movie.Year}",
+            text = "Year of Production: ${movie.year}",
             fontSize = 17.sp,
             fontWeight = FontWeight.SemiBold
         )
@@ -160,7 +157,7 @@ fun Movie(movie: MyDataItem) {
 
         Text(
             modifier = Modifier.padding(horizontal = 16.dp),
-            text = "Duration : ${movie.Runtime}",
+            text = "Duration : ${movie.runtime}",
             fontSize = 13.sp,
             fontWeight = FontWeight.SemiBold
         )
@@ -168,9 +165,9 @@ fun Movie(movie: MyDataItem) {
 }
 
 @Composable
-fun MovieRoom(movie: MyDataItemRoom) {
+fun MovieRoom(movie: MovieEntity) {
     val imageState = rememberAsyncImagePainter(
-        model = ImageRequest.Builder(LocalContext.current).data(movie.Poster)
+        model = ImageRequest.Builder(LocalContext.current).data(movie.poster)
             .size(Size.ORIGINAL).build()
     ).state
     Column(
@@ -196,7 +193,7 @@ fun MovieRoom(movie: MyDataItemRoom) {
                     .fillMaxWidth()
                     .height(200.dp),
                 painter = imageState.painter,
-                contentDescription = movie.Title,
+                contentDescription = movie.title,
                 contentScale = ContentScale.Crop
             )
         }
@@ -204,7 +201,7 @@ fun MovieRoom(movie: MyDataItemRoom) {
 
         Text(
             modifier = Modifier.padding(horizontal = 16.dp),
-            text = "${movie.Title} ",
+            text = "${movie.title} ",
             fontSize = 17.sp,
             fontWeight = FontWeight.SemiBold
         )
@@ -212,7 +209,7 @@ fun MovieRoom(movie: MyDataItemRoom) {
 
         Text(
             modifier = Modifier.padding(horizontal = 16.dp),
-            text = "Year of Production: ${movie.Year}",
+            text = "Year of Production: ${movie.year}",
             fontSize = 17.sp,
             fontWeight = FontWeight.SemiBold
         )
@@ -220,7 +217,7 @@ fun MovieRoom(movie: MyDataItemRoom) {
 
         Text(
             modifier = Modifier.padding(horizontal = 16.dp),
-            text = "Duration : ${movie.Runtime}",
+            text = "Duration : ${movie.runtime}",
             fontSize = 13.sp,
             fontWeight = FontWeight.SemiBold
         )

@@ -1,10 +1,14 @@
 package com.example.moviedummyapi.di
 
+import android.content.Context
+import androidx.room.Room
 import com.example.moviedummyapi.RetrofitInstance
 import com.example.moviedummyapi.data.API
+import com.example.moviedummyapi.data.model.MovieDataBase
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
+import dagger.hilt.android.qualifiers.ApplicationContext
 import dagger.hilt.components.SingletonComponent
 import javax.inject.Singleton
 
@@ -18,14 +22,19 @@ object AppModule {
         return RetrofitInstance.api
     }
 
-    /*
-    @Provides
+    //Local Room Database
     @Singleton
-    fun provideRepository(api : API): MovieRepository{
-        return MovieRepositoryImpl(api)
-    }
+    @Provides
+    fun getDatabase(@ApplicationContext context: Context) = Room.databaseBuilder(
+        context,
+        MovieDataBase::class.java,
+        "movieDB"
+    ).build()
 
-     */
+
+    @Singleton
+    @Provides
+    fun provideDao(movieDataBase: MovieDataBase) = movieDataBase.movieDao
 
 
 

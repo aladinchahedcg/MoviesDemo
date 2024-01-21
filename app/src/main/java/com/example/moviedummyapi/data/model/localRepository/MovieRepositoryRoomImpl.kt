@@ -3,10 +3,9 @@ package com.example.moviedummyapi.data.model.localRepository
 import android.net.http.HttpException
 import android.os.Build
 import androidx.annotation.RequiresExtension
-import androidx.lifecycle.LiveData
 import com.example.moviedummyapi.data.API
 import com.example.moviedummyapi.data.model.MovieDao
-import com.example.moviedummyapi.data.model.MyDataItemRoom
+import com.example.moviedummyapi.data.model.MovieEntity
 import dagger.hilt.android.scopes.ViewModelScoped
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
@@ -21,9 +20,9 @@ class MovieRepositoryRoomImpl @Inject constructor(
 ): MovieRepositoryRoom {
 
 
-val getALLmovies : Flow<List<MyDataItemRoom>> = movieDao.getAllMovies()
+val getALLmovies : Flow<List<MovieEntity>> = movieDao.getAllMovies()
     @RequiresExtension(extension = Build.VERSION_CODES.S, version = 7)
-    override suspend fun getMoviesListRoom(): Flow<List<MyDataItemRoom>> {
+    override suspend fun getMoviesListRoom(): Flow<List<MovieEntity>> {
         return flow {
             val moviesFromRepo = try {
                 api.getMovieListRoom()

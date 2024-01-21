@@ -1,13 +1,13 @@
 package com.example.moviedummyapi.data
 
-import com.example.moviedummyapi.data.model.MyDataItem
-import com.example.moviedummyapi.data.model.MyDataItemRoom
+import com.example.moviedummyapi.data.model.MovieEntity
+import com.example.moviedummyapi.data.model.MovieJson
 import retrofit2.http.GET
 
 interface API {
     @GET("movies")
-    suspend fun getMovieList(): List<MyDataItem>
-    suspend fun getMovieListRoom(): List<MyDataItemRoom>
+    suspend fun getMovieList(): List<MovieJson>
+    suspend fun getMovieListRoom(): List<MovieEntity>
 
 
     companion object {
