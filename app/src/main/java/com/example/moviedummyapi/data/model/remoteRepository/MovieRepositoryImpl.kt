@@ -1,7 +1,6 @@
 package com.example.moviedummyapi.data.model.remoteRepository
 
 import android.os.Build
-import android.util.Log
 import androidx.annotation.RequiresExtension
 import com.example.moviedummyapi.data.API
 import com.example.moviedummyapi.data.Result
@@ -31,7 +30,6 @@ class MovieRepositoryImpl @Inject constructor(
                 remoteMovies
             } catch (e: Exception) {
                 val moviesList = movieDao.getAllMovies().first()
-                Log.e("cefffef", e.message.toString())
                 if (moviesList.isEmpty())
                     emit(Result.Error(message = "Error loading Movies"))
                 else
